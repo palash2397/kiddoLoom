@@ -1,4 +1,5 @@
 import { School } from "../models/schools/school.js";
+import { Child } from "../models/parent/ChildForm.js";
 
 import { Admin } from "../models/admin/Admin.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -11,6 +12,7 @@ import jwt from "jsonwebtoken";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { Teacher } from "../models/teacher/Teacher.js";
+import { Room } from "../models/schools/Room.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -128,7 +130,6 @@ export const addSchoolHandle = async (req, res) => {
       });
     }
 
-    const randomPassword = await generateRandomString(15);
     // Create new school
     const school = new School({
       name,
@@ -365,3 +366,92 @@ export const teacherStatusUpdate = async (req, res) => {
       .json(new ApiResponse(500, {}, `Internal server error`));
   }
 };
+
+export const createRoomHandle = async (req, res) => {
+  try {
+    const { roomNo, schoolId, teacherId, studentIds } = req.body;
+
+    console.log("------------>",req.user)
+
+    const schema = Joi.object({
+      roomNo: Joi.string().required(),
+      schoolId: Joi.string().required(),
+      teacherId: Joi.string().required(),
+      studentIds: Joi.array().items(Joi.string()).min(1).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+
+    if (error)
+      return res
+        .status(401)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+
+    const school = await School.findOne({ _id: schoolId });
+
+    if (!school)
+      return res.status(404).json(new ApiResponse(404, {}, `school not found`));
+
+    const teacher = await Teacher.findOne({ _id: teacherId }).populate("schoolId");
+    if (!teacher)
+      return res
+        .status(404)
+        .json(new ApiResponse(404, {}, `teacher not found`));
+
+
+        console.log(teacher)
+
+    if (
+      teacher.schoolId._id.toString() !== schoolId ||
+      teacher.schoolId.adminId.toString() !== req.user.id
+    ) {
+      return res
+        .status(401)
+        .json(new ApiResponse(400, {}, `Unauthorized Access`));
+    }
+
+    const invalidStudents = [];
+
+    for (const id of studentIds) {
+      console.log(" ids ---------->", id)
+      const student = await Child.findById(id);
+      if (!student || student.schoolId.toString() !== schoolId) {
+        invalidStudents.push(id);
+      }
+    }
+
+    if (invalidStudents.length)
+      return res
+        .status(400)
+        .json(
+          new ApiResponse(
+            400,
+            {},
+            `Student does not belong to school: ${invalidStudents.join(", ")}`
+          )
+        );
+
+    const data = new Room({
+      roomNo,
+      schoolId,
+      teacherId,
+      studentIds,
+      createdBy: req.user.id,
+    });
+
+    await data.save();
+
+    return res
+      .status(201)
+      .json(
+        new ApiResponse(200, { id: data._id }, `room created successfully `)
+      );
+  } catch (error) {
+    console.log(`error while creating room `, error);
+    return res
+      .status(501)
+      .json(new ApiResponse(500, {}, `Internal server error`));
+  }
+};
+
+

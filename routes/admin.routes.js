@@ -5,7 +5,8 @@ import {
     forgotPasswordHandle,
     verifyPasswordHandle,
     changePasswordHandle,
-    teacherStatusUpdate
+    teacherStatusUpdate,
+    createRoomHandle
 }
 from "../controllers/adminController.js"
 
@@ -21,6 +22,7 @@ adminRouter.post("/forgot-password", forgotPasswordHandle);
 adminRouter.get("/verify-password/:id", verifyPasswordHandle);
 adminRouter.post("/change-password", changePasswordHandle);
 adminRouter.patch("/teacher/status", auth, teacherStatusUpdate )
+adminRouter.post("/room", auth, createRoomHandle)
 
 
 

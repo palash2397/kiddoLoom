@@ -7,26 +7,17 @@ import { generateRandomString, getExpirationTime } from "../utils/helpers.js";
 import { sendForgotPasswordMail, sendPasswordMail } from "../utils/email.js";
 import { Teacher } from "../models/teacher/Teacher.js";
 import { School } from "../models/schools/school.js";
+import { Room } from "../models/schools/Room.js";
 
 export const signupHandle = async (req, res) => {
   try {
-    const {
-      name,
-      email,
-      phone,
-      roomNo,
-      education,
-      city,
-      address,
-      gender,
-      schoolId,
-    } = req.body;
+    const { name, email, phone, education, city, address, gender, schoolId } =
+      req.body;
 
     const schema = Joi.object({
       name: Joi.string().trim().min(2).max(100).required(),
       email: Joi.string().email().required(),
       phone: Joi.string().required(),
-      roomNo: Joi.string().required(),
       education: Joi.string().required(),
       city: Joi.string().required(),
       address: Joi.string().required(),
@@ -59,7 +50,6 @@ export const signupHandle = async (req, res) => {
       name,
       email,
       phone,
-      roomNo,
       education,
       city,
       address,
@@ -105,7 +95,7 @@ export const loginHandle = async (req, res) => {
 
     // Find parent by email
     const user = await Teacher.findOne({ email });
-    if (!user)
+    if (!user || !(await bcrypt.compare(password, user.password)))
       return res
         .status(401)
         .json(new ApiResponse(401, {}, "Invalid email or password"));
@@ -117,12 +107,6 @@ export const loginHandle = async (req, res) => {
           : `your account is rejected by the school`;
       return res.status(401).json(new ApiResponse(400, {}, `${msg}`));
     }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword)
-      return res
-        .status(401)
-        .json(new ApiResponse(401, {}, "Invalid email or password"));
 
     // Generate JWT token
     const token = jwt.sign(
@@ -248,5 +232,53 @@ export const changePasswordHandle = async (req, res) => {
   } catch (error) {
     console.error(`Error changing password:`, error);
     res.render(`error`, { msg: `Invalid link` });
+  }
+};
+
+export const teacherRoomsHandle = async (req, res) => {
+  try {
+    const { id } = req.query;
+    if (id) {
+      const data = await Room.findOne({ _id: id, teacherId: req.user.id })
+        .select("-__v  -schoolId  -createdBy -teacherId")
+        .populate({
+          path: "studentIds",
+          select: "-__v -createdAt -updatedAt -schoolId",
+          populate: {
+            path: "parentId",
+            select: "_id name email",
+          },
+        });
+      if (!data)
+        return res.status(404).json(new ApiResponse(404, {}, `room not found`));
+
+      return res
+        .status(200)
+        .json(new ApiResponse(200, data, `Room fetched successfully`));
+    }
+
+    const data = await Room.find({ teacherId: req.user.id })
+      .select("-__v  -schoolId  -createdBy -teacherId")
+      .populate({
+        path: "studentIds",
+        select: "-__v -createdAt -updatedAt -schoolId",
+        populate: {
+          path: "parentId",
+          select: "_id name email",
+        },
+      });
+
+    if (!data || data.lenght == 0) {
+      return res.status(404).json(new ApiResponse(404, {}, `rooms not found`));
+    }
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, data, `Rooms fetched successfully`));
+  } catch (error) {
+    console.error(`Error while getting teachers rooms:`, error);
+    return res
+      .status(500)
+      .json(new ApiResponse(500, {}, `Internal Server Error`));
   }
 };

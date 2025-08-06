@@ -6,6 +6,7 @@ import { Teacher } from "../models/teacher/Teacher.js";
 // import { generateRandomString, getExpirationTime } from "../utils/helpers.js";
 // import { sendForgotPasswordMail } from "../utils/email.js";
 import Joi from "joi";
+import { Room } from "../models/schools/Room.js";
 // import bcrypt from "bcryptjs";
 // import jwt from "jsonwebtoken";
 
@@ -162,19 +163,19 @@ import Joi from "joi";
 // };
 export const allSchoolsHandle = async (req, res) => {
   try {
-    const flag = req.body;
+    const { id } = req.body;
 
-    if (flag == "all") {
-      const data = await School.find()
+    if (id) {
+      const data = await School.findOne({ _id: id })
         .select("-__v -createdAt -updatedAt")
         .sort({ createdAt: -1 });
 
-      data.map((item) => {
-        item.images.map((img) => {
-          img.url = img.url
-            ? `${process.env.BASE_URL}/schools/${img.url}`
-            : `${process.env.DEFAULT_PIC}`;
-        });
+      console.log(" ---------->", data);
+
+      data.images.map((img) => {
+        img.url = img.url
+          ? `${process.env.BASE_URL}/schools/${img.url}`
+          : `${process.env.DEFAULT_PIC}`;
       });
 
       return res
@@ -182,9 +183,11 @@ export const allSchoolsHandle = async (req, res) => {
         .json(new ApiResponse(200, data, "Schools fetched successfully"));
     }
 
-    const data = await School.find({ isApproved: { $in: [1, 2] } })
+    const data = await School.find({ status: { $in: [1, 2] } })
       .select("-__v -createdAt -updatedAt")
       .sort({ createdAt: -1 });
+
+    console.log(" ---------->", data);
 
     data.map((item) => {
       item.images.map((img) => {
@@ -286,9 +289,13 @@ export const schoolDetailsHandle = async (req, res) => {
       "-__v -createdAt -updatedAt"
     );
 
+    console.log(``);
+
     if (!school) {
       return res.status(404).json(new ApiResponse(404, {}, `School not found`));
     }
+
+    console.log(`school --------->`, school);
 
     school.images.map((img) => {
       img.url = img.url
@@ -330,7 +337,7 @@ export const allTeachersHandle = async (req, res) => {
     const school = await School.findOne({
       _id: schoolId,
       adminId: req.user.id,
-    })
+    });
     if (!school)
       return res.status(404).json(new ApiResponse(404, {}, `School not found`));
 
@@ -350,7 +357,9 @@ export const allTeachersHandle = async (req, res) => {
         .json(new ApiResponse(200, teacher, `Teacher fetched successfully`));
     }
 
-    const teachers = await Teacher.find({ schoolId: schoolId }).select("-__v -createdAt -updatedAt -password -actToken -linkExpireAt");
+    const teachers = await Teacher.find({ schoolId: schoolId }).select(
+      "-__v -createdAt -updatedAt -password -actToken -linkExpireAt"
+    );
 
     if (!teachers || teachers.length === 0) {
       return res
@@ -367,4 +376,84 @@ export const allTeachersHandle = async (req, res) => {
       .status(501)
       .json(new ApiResponse(500, {}, `Internal server error`));
   }
+};
+
+export const getRoomsHandle = async (req, res) => {
+  const { id, schoolId } = req.body;
+
+  const schema = Joi.object({
+    id: Joi.string().allow("").optional(),
+    schoolId: Joi.string().optional(),
+  });
+
+  const { error } = schema.validate({ id, schoolId });
+  if (error)
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, error.details[0].message));
+
+  const school = await School.findOne({ _id: schoolId, adminId: req.user.id });
+  if (!school)
+    return res
+      .status(401)
+      .json(new ApiResponse(400, {}, `school not found or unauthorized`));
+
+  if (id) {
+    const data = await Room.findOne({ _id: id })
+      .select("-__v -createdAt -updatedAt")
+      .populate(
+        "teacherId",
+        "-password -actToken -linkExpireAt -createdAt -updatedAt -__v -schoolId"
+      )
+      .populate("schoolId", "-createdAt -updatedAt -__v -adminId")
+      .populate({
+        path: "studentIds",
+        select: "-createdAt -updatedAt -__v -schoolId",
+        populate: {
+          path: "parentId",
+          select: "name email phone",
+        },
+      })
+      .populate("createdBy", "-password -actToken -linkExpireAt -createdAt -updatedAt -__v")
+
+      data.schoolId.images.map((img)=>{
+        img.url = img.url ? `${process.env.BASE_URL}/schools/${img.url}`: `${process.env.DEFAULT_PIC}`
+      })
+    if (!data)
+      return res.status(404).json(new ApiResponse(404, {}, `No room found`));
+
+    return res
+      .status(201)
+      .json(new ApiResponse(200, data, `room fetched successfully`));
+  }
+
+  const data = await Room.find({ schoolId: schoolId })
+    .select("-__v -createdAt -updatedAt")
+    .populate(
+      "teacherId",
+      "-password -actToken -linkExpireAt -createdAt -updatedAt -__v -schoolId"
+    )
+    .populate("schoolId", "-createdAt -updatedAt -__v -adminId")
+    .populate({
+      path: "studentIds",
+      select: "-createdAt -updatedAt -__v -schoolId",
+      populate: {
+        path: "parentId",
+        select: "name email phone",
+      },
+    })
+    .populate("createdBy", "-password -actToken -linkExpireAt -createdAt -updatedAt -__v")
+
+    data.map((item)=>{
+      item.schoolId.images.map((img)=>{
+        img.url = img.url ? `${process.env.BASE_URL}/schools/${img.url}`: `${process.env.DEFAULT_PIC}`
+      })
+    })
+
+  if (!data || data.length <= 0)
+    return res.status(404).json(new ApiResponse(404, {}, `No rooms found`));
+
+  return res
+    .status(201)
+    .json(new ApiResponse(200, data, `rooms fetched successfully`));
 };

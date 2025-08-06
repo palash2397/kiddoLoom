@@ -26,11 +26,6 @@ const teacherSchema = new mongoose.Schema(
             required: true
         },
 
-        roomNo: {
-            type: String,
-            required: true,
-        },
-
         education: {
             type: String,
             required: true,

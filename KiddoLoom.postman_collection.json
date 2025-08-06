@@ -1,0 +1,848 @@
+{
+	"info": {
+		"_postman_id": "0e0212d5-0473-489a-8540-00683846e703",
+		"name": "KiddoLoom",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1164167",
+		"_collection_link": "https://event1-6644.postman.co/workspace/Event-Wala~248c291a-0617-4354-82ab-97fc6de8a1de/collection/40233504-0e0212d5-0473-489a-8540-00683846e703?action=share&source=collection_link&creator=1164167"
+	},
+	"item": [
+		{
+			"name": "School",
+			"item": [
+				{
+					"name": "school",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flag\": \"all\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/schools/school",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"schools",
+								"school"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "my-school",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDM3OTA4MCwiZXhwIjoxNzU2OTcxMDgwfQ.VJJpTfj7LLgPQLbkqpancANdyBI-d5MSlpWoF0WUATA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Aarav Mehta\",\r\n  \"age\": 9,\r\n  \"parentName\": \"Ritika Mehta\",\r\n  \"email\": \"aarav.mehta@example.com\",\r\n  \"phone\": \"+918273645091\",\r\n  \"emergencyContact\": \"+919876543210\",\r\n  \"address\": \"45 Sunrise Avenue, Nashik, Maharashtra\",\r\n  \"notes\": \"Needs special attention in math class.\",\r\n  \"schoolId\": \"688b418336679645f1ae3e87\"\r\n}"
+						},
+						"url": {
+							"raw": "{{kiddo}}/schools/my-school",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"schools",
+								"my-school"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all-forms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDM3MjI2NiwiZXhwIjoxNzU2OTY0MjY2fQ.ybs-AuLSMuTyBZhJbkb_RSqDVaa1oly9DSLCmmO-qDg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"schoolId\":\"6890b8f656f80fd0cf3300f4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/schools/all-forms",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"schools",
+								"all-forms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teachers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDM3OTA4MCwiZXhwIjoxNzU2OTcxMDgwfQ.VJJpTfj7LLgPQLbkqpancANdyBI-d5MSlpWoF0WUATA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6891a9320dfc43c3cbcb0904\",\r\n    \"schoolId\": \"6890b8f656f80fd0cf3300f4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/schools/all-teachers",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"schools",
+								"all-teachers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parent",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"farhan420\",\r\n    \"email\":\"farhan420@yopmail.com\",\r\n    \"phone\": \"123456972\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/register",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"farhan420@yopmail.com\",\r\n    \"password\":\"Farhan@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/login",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"farhan420@yopmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/forgot-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"email\":\"amanss@yopmail.com\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/change-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"email\":\"amanss@yopmail.com\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/verify-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"verify-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "child",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0MzAyNzAyLCJleHAiOjE3NTY4OTQ3MDJ9.k5mly8eP24RmfjWmD97DBFbB6RU-I3Q9X7aSCgmAQCA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"khuboo Mehta\",\r\n  \"age\": 9,\r\n  \"parentName\": \"Ritika Mehta\",\r\n  \"email\": \"aarav.mehta@example.com\",\r\n  \"phone\": \"+918273645091\",\r\n  \"emergencyContact\": \"+919876543210\",\r\n  \"address\": \"45 Sunrise Avenue, Nashik, Maharashtra\",\r\n  \"notes\": \"Needs special attention in math class.\",\r\n  \"schoolId\": \"688b418336679645f1ae3e87\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/parents/child",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"parents",
+								"child"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "superAdmin",
+			"item": [
+				{
+					"name": "admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTA2NWFhYjY0YmFiZmVmMTRiNjhmNSIsImVtYWlsIjoic3VwZXJBZG1pbkB5b3BtYWlsLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzU0MzA5NTA1LCJleHAiOjE3NTY5MDE1MDV9.eXAgIfSkyoaxb9-1M5FxKSROGZbrKFAl30-wEGJDVQU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"badkend\",\r\n    \"email\": \"backend@yopmail.com\",\r\n    \"phone\": \"+9198654513\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/super-admin/admin",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"super-admin",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\r\n    \"email\": \"superAdmin@yopmail.com\",\r\n    \"password\": \"superadmin@123\"\r\n  \r\n}\r\n    // \"email\": \"superAdmin@yopmail.com\",\r\n    // \"password\": \"superadmin@123\"",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/admin/login",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"admin",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"email\": \"admin@yopmail.com\"\r\n   \r\n  \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/admin/forgot-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"admin",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "school",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDMwOTkyMywiZXhwIjoxNzU2OTAxOTIzfQ.rUY0D5vbUy3dKN1uOiPdskukFZoa4aYDPgI0ITSodLs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "st dps",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": " A top-tier school",
+									"type": "text"
+								},
+								{
+									"key": "address[street]",
+									"value": " 123 Education Street",
+									"type": "text"
+								},
+								{
+									"key": "address[city]",
+									"value": " kamptee, Nagpur",
+									"type": "text"
+								},
+								{
+									"key": "address[state]",
+									"value": " Maharashtra",
+									"type": "text"
+								},
+								{
+									"key": "address[zipCode]",
+									"value": " 400001",
+									"type": "text"
+								},
+								{
+									"key": "address[country]",
+									"value": " India",
+									"type": "text"
+								},
+								{
+									"key": "location[type]",
+									"value": " Point",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "location[coordinates][0]",
+									"value": " 72.8777",
+									"type": "text"
+								},
+								{
+									"key": "location[coordinates][1]",
+									"value": " 19.0760",
+									"type": "text"
+								},
+								{
+									"key": "contactInfo[phone]",
+									"value": " +919876543238",
+									"type": "text"
+								},
+								{
+									"key": "contactInfo[email]",
+									"value": "dps@yopmail.com",
+									"type": "text"
+								},
+								{
+									"key": "contactInfo[website]",
+									"value": " https://brightminds.edu",
+									"type": "text"
+								},
+								{
+									"key": "facilities[0]",
+									"value": " Library",
+									"type": "text"
+								},
+								{
+									"key": "facilities[1]",
+									"value": " Sports Ground",
+									"type": "text"
+								},
+								{
+									"key": "ageGroups[0][name]",
+									"value": " Nursery",
+									"type": "text"
+								},
+								{
+									"key": "ageGroups[0][minAge]",
+									"value": " 2",
+									"type": "text"
+								},
+								{
+									"key": "ageGroups[0][maxAge]",
+									"value": " 3",
+									"type": "text"
+								},
+								{
+									"key": "fees[admissionFee]",
+									"value": " 5000",
+									"type": "text"
+								},
+								{
+									"key": "fees[monthlyFee]",
+									"value": " 8000",
+									"type": "text"
+								},
+								{
+									"key": "fees[annualFee]",
+									"value": " 15000",
+									"type": "text"
+								},
+								{
+									"key": "timings[openTime]",
+									"value": " 08:00",
+									"type": "text"
+								},
+								{
+									"key": "timings[closeTime]",
+									"value": " 17:00",
+									"type": "text"
+								},
+								{
+									"key": "timings[workingDays][0]",
+									"value": " Monday",
+									"type": "text"
+								},
+								{
+									"key": "timings[workingDays][1]",
+									"value": " Tuesday",
+									"type": "text"
+								},
+								{
+									"key": "timings[workingDays][2]",
+									"value": " Wednesday",
+									"type": "text"
+								},
+								{
+									"key": "principalName",
+									"value": " Dr. rahul verma",
+									"type": "text"
+								},
+								{
+									"key": "establishedYear",
+									"value": " 2015",
+									"type": "text"
+								},
+								{
+									"key": "affiliation",
+									"value": " CBSE",
+									"type": "text"
+								},
+								{
+									"key": "curriculum[0]",
+									"value": " STEM Activities",
+									"type": "text"
+								},
+								{
+									"key": "curriculum[1]",
+									"value": " Montessori Method",
+									"type": "text"
+								},
+								{
+									"key": "captions[0]",
+									"value": " Front View",
+									"type": "text"
+								},
+								{
+									"key": "captions[1]",
+									"value": " Ground Area",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/admin/Downloads/image (5).png",
+										"/C:/Users/admin/Downloads/simulator_screenshot_F6D0320F-D78D-4EE4-87C2-C6FDF9A3ACA4 (1).png"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{kiddo}}/admin/school",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"admin",
+								"school"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "teacher-status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTA2NWFhYjY0YmFiZmVmMTRiNjhmNSIsImVtYWlsIjoic3VwZXJBZG1pbkB5b3BtYWlsLmNvbSIsInJvbGUiOiJzdXBlckFkbWluIiwiaWF0IjoxNzU0MzkyMDg4LCJleHAiOjE3NTY5ODQwODh9.fQseNAHZFtJircmO577rUkKXBDaV-Ar4KEFK7FXRgUQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"0\",\r\n    \"teacherId\": \"6891a9320dfc43c3cbcb0904\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/admin/teacher/status",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"admin",
+								"teacher",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher",
+			"item": [
+				{
+					"name": "auth",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ustad khan\",\r\n  \"email\": \"ustad420@yopmail.com\",\r\n  \"phone\": \"+919876543241\",\r\n  \"roomNo\": \"T-205\",\r\n  \"education\": \"M.Ed. (Biology)\",\r\n  \"city\": \"Indore\",\r\n  \"address\": \"Flat 12B, Sunrise Apartments, Baner Road\",\r\n  \"gender\": \"Male\",\r\n  \"schoolId\": \"6890b8f656f80fd0cf3300f4\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/teachers/register",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"teachers",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"rajesh@yopmail.com\",\r\n    \"password\":\"Rajesh@123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/teachers/login",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"teachers",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forgot-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"rajesh@yopmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{kiddo}}/teachers/forgot-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"teachers",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"email\":\"amanss@yopmail.com\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/change-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"change-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "verify-password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n    \"email\":\"amanss@yopmail.com\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{kiddo}}/parents/verify-password",
+									"host": [
+										"{{kiddo}}"
+									],
+									"path": [
+										"parents",
+										"verify-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "kiddo",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
