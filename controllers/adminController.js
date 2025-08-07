@@ -371,7 +371,7 @@ export const createRoomHandle = async (req, res) => {
   try {
     const { roomNo, schoolId, teacherId, studentIds } = req.body;
 
-    console.log("------------>",req.user)
+    console.log("------------>", req.user);
 
     const schema = Joi.object({
       roomNo: Joi.string().required(),
@@ -392,14 +392,15 @@ export const createRoomHandle = async (req, res) => {
     if (!school)
       return res.status(404).json(new ApiResponse(404, {}, `school not found`));
 
-    const teacher = await Teacher.findOne({ _id: teacherId }).populate("schoolId");
+    const teacher = await Teacher.findOne({ _id: teacherId }).populate(
+      "schoolId"
+    );
     if (!teacher)
       return res
         .status(404)
         .json(new ApiResponse(404, {}, `teacher not found`));
 
-
-        console.log(teacher)
+    console.log(teacher);
 
     if (
       teacher.schoolId._id.toString() !== schoolId ||
@@ -413,7 +414,7 @@ export const createRoomHandle = async (req, res) => {
     const invalidStudents = [];
 
     for (const id of studentIds) {
-      console.log(" ids ---------->", id)
+      console.log(" ids ---------->", id);
       const student = await Child.findById(id);
       if (!student || student.schoolId.toString() !== schoolId) {
         invalidStudents.push(id);
@@ -441,6 +442,16 @@ export const createRoomHandle = async (req, res) => {
 
     await data.save();
 
+    await Promise.all(
+      studentIds.map(async (stuId) => {
+        await Child.findByIdAndUpdate(
+          stuId,
+          { roomId: data._id },
+          { new: true }
+        );
+      })
+    );
+
     return res
       .status(201)
       .json(
@@ -453,5 +464,3 @@ export const createRoomHandle = async (req, res) => {
       .json(new ApiResponse(500, {}, `Internal server error`));
   }
 };
-
-

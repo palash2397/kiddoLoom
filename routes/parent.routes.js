@@ -6,7 +6,10 @@ import {
     fogotPasswordHandle,
     verifyPasswordHandle,
     changePasswordHandle,
-    addChildHandle
+    addChildHandle,
+    myChildHandle,
+    markAttendenceHandle,
+    childAttendanceHandle
 }  from "../controllers/parentController.js";
 
 
@@ -20,8 +23,9 @@ parenRouter.post("/forgot-password", fogotPasswordHandle);
 parenRouter.get("/verify-password/:id", verifyPasswordHandle);
 parenRouter.post("/change-password", changePasswordHandle);
 parenRouter.post("/child", auth, addChildHandle)
-
-
+parenRouter.get("/child", auth, myChildHandle)
+parenRouter.post("/child/attendance", auth, markAttendenceHandle)
+parenRouter.get("/child/attendance", auth, childAttendanceHandle)
 
 
 

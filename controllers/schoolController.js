@@ -1,4 +1,5 @@
 import { School } from "../models/schools/school.js";
+import QRCode from 'qrcode'  
 import { Child } from "../models/parent/ChildForm.js";
 import { Admin } from "../models/admin/Admin.js";
 import { ApiResponse } from "../utils/ApiResponse.js";

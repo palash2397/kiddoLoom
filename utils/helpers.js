@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { nanoid } from 'nanoid';
+import QRCode from 'qrcode'
+
 
 
 
@@ -29,11 +31,22 @@ export const generateRandomString = async(num)=>{
     
 }
 
-
-
 export const getExpirationTime = () => {
     return new Date(Date.now() + 5 * 60 * 1000); // Current time + 5 minutes
 };
+
+export  const generateQR = async data => {
+  try {
+    const parsedData = JSON.stringify(data)
+    const QR = await QRCode.toDataURL(parsedData)
+    return QR 
+  } catch (err) {
+    console.error(err)
+    
+  }
+}
+
+
 
 
 

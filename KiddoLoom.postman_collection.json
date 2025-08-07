@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "0e0212d5-0473-489a-8540-00683846e703",
+		"_postman_id": "def92215-80c3-4c72-92bf-af943aac0904",
 		"name": "KiddoLoom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1164167",
-		"_collection_link": "https://event1-6644.postman.co/workspace/Event-Wala~248c291a-0617-4354-82ab-97fc6de8a1de/collection/40233504-0e0212d5-0473-489a-8540-00683846e703?action=share&source=collection_link&creator=1164167"
+		"_exporter_id": "40233504"
 	},
 	"item": [
 		{
@@ -19,13 +18,8 @@
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"flag\": \"all\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"mode": "formdata",
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{kiddo}}/schools/school",
@@ -51,7 +45,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDM3OTA4MCwiZXhwIjoxNzU2OTcxMDgwfQ.VJJpTfj7LLgPQLbkqpancANdyBI-d5MSlpWoF0WUATA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDQ2OTYxMSwiZXhwIjoxNzU3MDYxNjExfQ.hNQPmR44mpl3BiYJ34CKjohHjQH8FU-JMYdm4JwrUFI",
 									"type": "string"
 								}
 							]
@@ -60,7 +54,12 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Aarav Mehta\",\r\n  \"age\": 9,\r\n  \"parentName\": \"Ritika Mehta\",\r\n  \"email\": \"aarav.mehta@example.com\",\r\n  \"phone\": \"+918273645091\",\r\n  \"emergencyContact\": \"+919876543210\",\r\n  \"address\": \"45 Sunrise Avenue, Nashik, Maharashtra\",\r\n  \"notes\": \"Needs special attention in math class.\",\r\n  \"schoolId\": \"688b418336679645f1ae3e87\"\r\n}"
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "javascript"
+								}
+							}
 						},
 						"url": {
 							"raw": "{{kiddo}}/schools/my-school",
@@ -95,7 +94,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"schoolId\":\"6890b8f656f80fd0cf3300f4\"\r\n}",
+							"raw": "{\r\n    \"schoolId\":\"689315ace317b6aaa27baa02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -126,7 +125,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDM3OTA4MCwiZXhwIjoxNzU2OTcxMDgwfQ.VJJpTfj7LLgPQLbkqpancANdyBI-d5MSlpWoF0WUATA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDQ2OTYxMSwiZXhwIjoxNzU3MDYxNjExfQ.hNQPmR44mpl3BiYJ34CKjohHjQH8FU-JMYdm4JwrUFI",
 									"type": "string"
 								}
 							]
@@ -135,7 +134,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"6891a9320dfc43c3cbcb0904\",\r\n    \"schoolId\": \"6890b8f656f80fd0cf3300f4\"\r\n}",
+							"raw": "{\r\n    \"id\": \"\",\r\n    \"schoolId\": \"689315ace317b6aaa27baa02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -150,6 +149,46 @@
 							"path": [
 								"schools",
 								"all-teachers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "rooms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDQ3NTI0NSwiZXhwIjoxNzU3MDY3MjQ1fQ.9Ah_DJFkIEkd2a97TnrhjypAB3lUK3qU0Av8UOWxJbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\":\"\",\r\n    \"schoolId\":\"689315ace317b6aaa27baa02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/schools/rooms",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"schools",
+								"rooms"
 							]
 						}
 					},
@@ -193,11 +232,21 @@
 						{
 							"name": "login",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NTUwNjA5LCJleHAiOjE3NTcxNDI2MDl9.T1BOyyLLKhVmw4UtwVIgNwpmz6Hk4FZVw1fbGZ0Ucds",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"farhan420@yopmail.com\",\r\n    \"password\":\"Farhan@123\"\r\n}",
+									"raw": "{\r\n    \"email\": \"farhan420@yopmail.com\",\r\n    \"password\":\"farhan@123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -298,7 +347,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0MzAyNzAyLCJleHAiOjE3NTY4OTQ3MDJ9.k5mly8eP24RmfjWmD97DBFbB6RU-I3Q9X7aSCgmAQCA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NTYzOTYwLCJleHAiOjE3NTcxNTU5NjB9.FG-48yD_on4AmQJeoREnZ55OkWSoqBdw9ZLI80EF6vQ",
 									"type": "string"
 								}
 							]
@@ -307,7 +356,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"khuboo Mehta\",\r\n  \"age\": 9,\r\n  \"parentName\": \"Ritika Mehta\",\r\n  \"email\": \"aarav.mehta@example.com\",\r\n  \"phone\": \"+918273645091\",\r\n  \"emergencyContact\": \"+919876543210\",\r\n  \"address\": \"45 Sunrise Avenue, Nashik, Maharashtra\",\r\n  \"notes\": \"Needs special attention in math class.\",\r\n  \"schoolId\": \"688b418336679645f1ae3e87\"\r\n}",
+							"raw": "{\r\n  \"name\": \"khuboo Mehta\",\r\n  \"age\": 9,\r\n  \"parentName\": \"Ritika Mehta\",\r\n  \"email\": \"aarav.mehta@example.com\",\r\n  \"phone\": \"+918273645091\",\r\n  \"emergencyContact\": \"+919876543210\",\r\n  \"address\": \"45 Sunrise Avenue, Nashik, Maharashtra\",\r\n  \"notes\": \"Needs special attention in math class.\",\r\n  \"schoolId\": \"689315ace317b6aaa27baa02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -322,6 +371,127 @@
 							"path": [
 								"parents",
 								"child"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "child",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NTcxNDM5LCJleHAiOjE3NTcxNjM0Mzl9.T7Px9yekWJia8hy_ebxJT0qILkl_qyC9895l3_AHbC8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{kiddo}}/parents/child",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"parents",
+								"child"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "688c7e455881a83ee50478ed",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attendance",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NDgzMzkxLCJleHAiOjE3NTcwNzUzOTF9.dx8ywM0XA5OBA4x-VmTsjWQ__yB9GDcy4uRYVYLDYpc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\": \"688c7e455881a83ee50478ed\",\r\n  \"room\": \"689484b692f80ca40238cba1\",\r\n  \"school\": \"689315ace317b6aaa27baa02\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/parents/child/attendance",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"parents",
+								"child",
+								"attendance"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "attendance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NDgzMzkxLCJleHAiOjE3NTcwNzUzOTF9.dx8ywM0XA5OBA4x-VmTsjWQ__yB9GDcy4uRYVYLDYpc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"student\": \"688c7e455881a83ee50478ed\",\r\n  \"room\": \"689484b692f80ca40238cba1\",\r\n  \"school\": \"689315ace317b6aaa27baa02\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/parents/child/attendance",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"parents",
+								"child",
+								"attendance"
 							]
 						}
 					},
@@ -380,11 +550,21 @@
 						{
 							"name": "login",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDQ2OTYxMSwiZXhwIjoxNzU3MDYxNjExfQ.hNQPmR44mpl3BiYJ34CKjohHjQH8FU-JMYdm4JwrUFI",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\r\n    \"email\": \"superAdmin@yopmail.com\",\r\n    \"password\": \"superadmin@123\"\r\n  \r\n}\r\n    // \"email\": \"superAdmin@yopmail.com\",\r\n    // \"password\": \"superadmin@123\"",
+									"raw": "{\r\n\r\n    \"email\": \"backend@yopmail.com\",\r\n    \"password\": \"backend@123\"\r\n  \r\n}\r\n    // \"email\": \"superAdmin@yopmail.com\",\r\n    // \"password\": \"superadmin@123\"",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -441,7 +621,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDMwOTkyMywiZXhwIjoxNzU2OTAxOTIzfQ.rUY0D5vbUy3dKN1uOiPdskukFZoa4aYDPgI0ITSodLs",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDQ2OTYxMSwiZXhwIjoxNzU3MDYxNjExfQ.hNQPmR44mpl3BiYJ34CKjohHjQH8FU-JMYdm4JwrUFI",
 									"type": "string"
 								}
 							]
@@ -584,7 +764,7 @@
 								},
 								{
 									"key": "principalName",
-									"value": " Dr. rahul verma",
+									"value": " Dr. ustad verma",
 									"type": "text"
 								},
 								{
@@ -621,8 +801,8 @@
 									"key": "images",
 									"type": "file",
 									"src": [
-										"/C:/Users/admin/Downloads/image (5).png",
-										"/C:/Users/admin/Downloads/simulator_screenshot_F6D0320F-D78D-4EE4-87C2-C6FDF9A3ACA4 (1).png"
+										"/C:/Users/admin/Pictures/Screenshots/Screenshot (1).png",
+										"/C:/Users/admin/Pictures/Screenshots/Screenshot (2).png"
 									]
 								}
 							]
@@ -677,6 +857,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDU0OTg3NywiZXhwIjoxNzU3MTQxODc3fQ.H6M1TfPtd1UAjWXU1gKhy5TLyB6m8yrgVi9Ah382dKQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"roomNo\": \"123\",\r\n    \"schoolId\":\"689315ace317b6aaa27baa02\",\r\n    \"teacherId\": \"6893210aa750ba3f0dd0ae7c\",\r\n    \"studentIds\": [\"688c7e455881a83ee50478ed\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/admin/room",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"admin",
+								"room"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -693,7 +910,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n  \"name\": \"ustad khan\",\r\n  \"email\": \"ustad420@yopmail.com\",\r\n  \"phone\": \"+919876543241\",\r\n  \"roomNo\": \"T-205\",\r\n  \"education\": \"M.Ed. (Biology)\",\r\n  \"city\": \"Indore\",\r\n  \"address\": \"Flat 12B, Sunrise Apartments, Baner Road\",\r\n  \"gender\": \"Male\",\r\n  \"schoolId\": \"6890b8f656f80fd0cf3300f4\"\r\n}\r\n",
+									"raw": "{\r\n  \"name\": \"aman khan\",\r\n  \"email\": \"aman420@yopmail.com\",\r\n  \"phone\": \"+919876543245\",\r\n  \"education\": \"M.Ed. (Biology)\",\r\n  \"city\": \"Indore\",\r\n  \"address\": \"Flat 12B, Sunrise Apartments, Baner Road\",\r\n  \"gender\": \"Male\",\r\n  \"schoolId\": \"6890b8f656f80fd0cf3300f4\"\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -720,7 +937,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"rajesh@yopmail.com\",\r\n    \"password\":\"Rajesh@123\"\r\n}",
+									"raw": "{\r\n    \"email\": \"aman420@yopmail.com\",\r\n    \"password\":\"Aman@123\"\r\n}\r\n\r\n\r\n// \"email\": \"Amkanq@yopmail.com\",\r\n//     \"password\":\"Aman@123\"",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -747,7 +964,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"rajesh@yopmail.com\"\r\n}",
+									"raw": "{\r\n    \"email\":\"aman420@yopmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -812,6 +1029,53 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "rooms",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NDgzMzkxLCJleHAiOjE3NTcwNzUzOTF9.dx8ywM0XA5OBA4x-VmTsjWQ__yB9GDcy4uRYVYLDYpc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/teachers/rooms",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"teachers",
+								"rooms"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "689331c68fcc65c660d801a8",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

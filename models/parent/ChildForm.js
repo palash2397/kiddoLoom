@@ -14,7 +14,6 @@ const ChildSchema = new mongoose.Schema(
     parentName: {
       type: String,
       required: true,
-
     },
     email: {
       type: String,
@@ -39,9 +38,9 @@ const ChildSchema = new mongoose.Schema(
       required: false,
     },
 
-    status:{
+    status: {
       type: Number,
-      enum: [0, 1, 2], 
+      enum: [0, 1, 2],
       default: 1,
     },
 
@@ -53,9 +52,14 @@ const ChildSchema = new mongoose.Schema(
     schoolId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "School",
-      required: false, 
+      required: false,
     },
 
+    roomId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+      default: null,
+    },
   },
   {
     timestamps: true,
