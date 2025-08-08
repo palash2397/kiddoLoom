@@ -4,7 +4,7 @@ import { Child } from "../models/parent/ChildForm.js";
 import { Admin } from "../models/admin/Admin.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { generateRandomString, getExpirationTime } from "../utils/helpers.js";
-import { sendPasswordMail, sendForgotPasswordMail } from "../utils/email.js";
+import {  sendForgotPasswordMail } from "../utils/email.js";
 
 import Joi from "joi";
 import bcrypt from "bcryptjs";
@@ -171,7 +171,9 @@ export const addSchoolHandle = async (req, res) => {
 export const loginHandle = async (req, res) => {
   try {
     const { email, password } = req.body;
+     
 
+    
     const schema = Joi.object({
       email: Joi.string().required(),
       password: Joi.string().required(),
@@ -459,6 +461,106 @@ export const createRoomHandle = async (req, res) => {
       );
   } catch (error) {
     console.log(`error while creating room `, error);
+    return res
+      .status(501)
+      .json(new ApiResponse(500, {}, `Internal server error`));
+  }
+};
+
+export const addstudentInRoomHandle = async (req, res) => {
+  try {
+    const { id, studentIds } = req.body;
+    const schema = Joi.object({
+      id: Joi.string().required(),
+      studentIds: Joi.array().items(Joi.string()).min(1).required(),
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error)
+      return res
+        .status(401)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+    const findRoom = await Room.findOne({ _id: id, createdBy: req.user.id });
+    if (!findRoom)
+      return res.status(404).json(new ApiResponse(404, {}, `room not found`));
+
+    for (const stu of studentIds) {
+      console.log("stu ---------->", typeof stu);
+      const data = await Child.findOne({ _id: stu });
+      if (!data)
+        return res
+          .status(404)
+          .json(new ApiResponse(404, {}, `child not found`));
+      if (data.schoolId.toString() !== findRoom.schoolId.toString())
+        return res
+          .status(404)
+          .json(new ApiResponse(404, {}, `student not in same school`));
+
+      findRoom.studentIds.map((item) => {
+        if (item == stu)
+          return res
+            .status(404)
+            .json(new ApiResponse(404, {}, `student student already in room`));
+      });
+    }
+
+    await Room.findByIdAndUpdate(
+      id,
+      { $addToSet: { studentIds: { $each: studentIds } } },
+      { new: true }
+    );
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, {}, `Students added successfully`));
+  } catch (error) {
+    console.log(`error while adding student in room `, error);
+    return res
+      .status(501)
+      .json(new ApiResponse(500, {}, `Internal server error`));
+  }
+};
+
+export const deleteStudentHandle = async (req, res) => {
+  try {
+    const { roomId, studentId } = req.body;
+
+    const schema = Joi.object({
+      roomId: Joi.string().required(),
+      studentId: Joi.string().required(),
+    });
+
+    const { error } = schema.validate(req.body);
+    if (error)
+      return res
+        .status(401)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+    const room = await Room.findOne({
+      _id: roomId,
+      createdBy: req.user.id,
+    });
+    if (!room)
+      return res.status(404).json(new ApiResponse(404, {}, `room not found`));
+
+    const student = await Child.findById(studentId);
+    if (!student)
+      return res
+        .status(404)
+        .json(new ApiResponse(404, {}, `student not found`));
+
+    if (!room.studentIds.includes(studentId))
+      return res
+        .status(400)
+        .json(new ApiResponse(404, {}, `Student is not assigned to this room`));
+
+    room.studentIds = room.studentIds.filter(
+      (id) => id.toString() !== studentId
+    );
+    await room.save();
+
+    return res.status(201).json(new ApiResponse(200, {id: studentId}, `student deleted successfully`));
+  } catch (error) {
+    console.log(`error while deleting student in room `, error);
     return res
       .status(501)
       .json(new ApiResponse(500, {}, `Internal server error`));

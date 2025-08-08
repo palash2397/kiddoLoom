@@ -8,6 +8,7 @@ import { sendForgotPasswordMail, sendPasswordMail } from "../utils/email.js";
 import { Teacher } from "../models/teacher/Teacher.js";
 import { School } from "../models/schools/school.js";
 import { Room } from "../models/schools/Room.js";
+import { RoomSchedule } from "../models/schools/Schedule.js";
 
 export const signupHandle = async (req, res) => {
   try {
@@ -82,6 +83,7 @@ export const loginHandle = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    let flag;
     const schema = Joi.object({
       email: Joi.string().required(),
       password: Joi.string().required(),
@@ -277,6 +279,107 @@ export const teacherRoomsHandle = async (req, res) => {
       .json(new ApiResponse(200, data, `Rooms fetched successfully`));
   } catch (error) {
     console.error(`Error while getting teachers rooms:`, error);
+    return res
+      .status(500)
+      .json(new ApiResponse(500, {}, `Internal Server Error`));
+  }
+};
+
+export const scheduleHandle = async (req, res) => {
+  try {
+    const { title, description, startTime, date, roomId } = req.body;
+    const schema = Joi.object({
+      title: Joi.string().required(),
+      description: Joi.string().required(),
+      startTime: Joi.string().required(),
+      date: Joi.string().required(),
+      roomId: Joi.string().required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error)
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+
+    const teacher = await Teacher.findOne({ _id: req.user.id });
+    if (!teacher)
+      return res
+        .status(400)
+        .json(new ApiResponse(404, {}, `teacher does not found`));
+
+    const room = await Room.findOne({ _id: roomId, teacherId: req.user.id });
+    if (!room)
+      return res
+        .status(400)
+        .json(
+          new ApiResponse(404, {}, `room does not found or room not assigned`)
+        );
+
+    console.table([teacher.schoolId.toString(), room.schoolId.toString()]);
+
+    if (teacher.schoolId.toString() !== room.schoolId.toString())
+      return res
+        .status(400)
+        .json(new ApiResponse(404, {}, `Unauthorized access`));
+
+    const newSchedule = await RoomSchedule.create({
+      title,
+      description,
+      startTime,
+      date,
+      roomId,
+      teacherId: req.user.id,
+    });
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(200, newSchedule._id, `schedule created successfully`)
+      );
+  } catch (error) {
+    console.error(`Error while scheduling:`, error);
+    return res
+      .status(500)
+      .json(new ApiResponse(500, {}, `Internal Server Error`));
+  }
+};
+
+export const myScheduleHandle = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const schema = Joi.object({
+      id: Joi.string().required(),
+    });
+    const { error } = schema.validate(req.body);
+    if (error)
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, error.details[0].message));
+
+    const room = await Room.findOne({ _id: id });
+    if (!room)
+      res.status(400).json(new ApiResponse(400, {}, `room not found`));
+
+    const user = await Teacher.findOne({ _id: req.user.id });
+    if (!user)
+      res.status(400).json(new ApiResponse(400, {}, `teacher not found`));
+
+    const data = await RoomSchedule.findOne({
+      roomId: id,
+      teacherId: req.user.id,
+    });
+
+    if (!data)
+      res.status(400).json(new ApiResponse(400, {}, `No schedule found`));
+
+
+    if (user.schoolId.toString() !== room.schoolId.toString()) 
+        res.status(400).json(new ApiResponse(400, {}, `Unauthorized access`));
+
+    return res.status(200).json(new ApiResponse(200,data , `schedule data fetched successfully`))
+    
+  } catch (error) {
+    console.error(`Error while getting schedule:`, error);
     return res
       .status(500)
       .json(new ApiResponse(500, {}, `Internal Server Error`));

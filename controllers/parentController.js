@@ -74,6 +74,7 @@ export const loginHandle = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    let flag;
     const schema = Joi.object({
       email: Joi.string().required(),
       password: Joi.string().required(),
@@ -107,11 +108,20 @@ export const loginHandle = async (req, res) => {
       }
     );
 
+    const findParent = await Child.findOne({parentId: parent._id})
+
+    if (!findParent){
+      flag=false
+    }else{
+      flag=true
+    }
+
     const userData = {
       id: parent._id,
       name: parent.name,
       email: parent.email,
       phone: parent.phone,
+      isChild: flag
     };
 
     return res

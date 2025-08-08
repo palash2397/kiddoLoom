@@ -6,7 +6,9 @@ import {
     verifyPasswordHandle,
     changePasswordHandle,
     teacherStatusUpdate,
-    createRoomHandle
+    createRoomHandle,
+    addstudentInRoomHandle,
+    deleteStudentHandle
 }
 from "../controllers/adminController.js"
 
@@ -23,6 +25,8 @@ adminRouter.get("/verify-password/:id", verifyPasswordHandle);
 adminRouter.post("/change-password", changePasswordHandle);
 adminRouter.patch("/teacher/status", auth, teacherStatusUpdate )
 adminRouter.post("/room", auth, createRoomHandle)
+adminRouter.patch("/room/update", auth , addstudentInRoomHandle)
+adminRouter.delete("/room/delete", auth, deleteStudentHandle)
 
 
 

@@ -467,7 +467,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NDgzMzkxLCJleHAiOjE3NTcwNzUzOTF9.dx8ywM0XA5OBA4x-VmTsjWQ__yB9GDcy4uRYVYLDYpc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGM1YTQyY2ZmOTQ5ZDI1MDM4MWJmYSIsImVtYWlsIjoiZmFyaGFuNDIwQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NTcxNDM5LCJleHAiOjE3NTcxNjM0Mzl9.T7Px9yekWJia8hy_ebxJT0qILkl_qyC9895l3_AHbC8",
 									"type": "string"
 								}
 							]
@@ -476,7 +476,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"student\": \"688c7e455881a83ee50478ed\",\r\n  \"room\": \"689484b692f80ca40238cba1\",\r\n  \"school\": \"689315ace317b6aaa27baa02\"\r\n\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -484,7 +484,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{kiddo}}/parents/child/attendance",
+							"raw": "{{kiddo}}/parents/child/attendance?id=688c7e455881a83ee50478ed",
 							"host": [
 								"{{kiddo}}"
 							],
@@ -492,6 +492,12 @@
 								"parents",
 								"child",
 								"attendance"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "688c7e455881a83ee50478ed"
+								}
 							]
 						}
 					},
@@ -894,6 +900,82 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDYzODU4NCwiZXhwIjoxNzU3MjMwNTg0fQ.6FiMWT2-HmfZ1-mTl_2wcIn6LYiqBKjBKCSl4LZY-Zg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"id\":\"689484b692f80ca40238cba1\",\r\n    \"studentIds\":[\"688c7e455881a83ee50478ed\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/admin/room/update",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"admin",
+								"room",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTBhNDI5YmZjMWJkYWJmNTk3MDZiMSIsImVtYWlsIjoiYmFja2VuZEB5b3BtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDY0MzUzNywiZXhwIjoxNzU3MjM1NTM3fQ.DJS5gN_OWqTnx-bL6DCNk32nRk0yPimvD4hJCGYrAl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"roomId\":\"689484b692f80ca40238cba1\",\r\n    \"studentId\":\"688c7e455881a83ee50478ed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/admin/room/delete",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"admin",
+								"room",
+								"delete"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -937,7 +1019,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"aman420@yopmail.com\",\r\n    \"password\":\"Aman@123\"\r\n}\r\n\r\n\r\n// \"email\": \"Amkanq@yopmail.com\",\r\n//     \"password\":\"Aman@123\"",
+									"raw": "{\r\n    \"email\": \"Amkanq@yopmail.com\",\r\n    \"password\":\"Aman@123\"\r\n}\r\n\r\n\r\n// \"email\": \"Amkanq@yopmail.com\",\r\n//     \"password\":\"Aman@123\"",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -964,7 +1046,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"aman420@yopmail.com\"\r\n}",
+									"raw": "{\r\n    \"email\":\"vinod@yopmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1072,6 +1154,83 @@
 									"value": "689331c68fcc65c660d801a8",
 									"disabled": true
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NjQ4OTY1LCJleHAiOjE3NTcyNDA5NjV9._hFEBVIFuW7T-Jdqn2xO2W7jk2VQra7C0Tu0Mvu5HOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Science Fair Project Meeting\",\r\n    \"description\": \"Discussion and planning for the upcoming annual science fair.\",\r\n    \"startTime\": \"09:00\",\r\n    \"date\": \"2025-08-20\",\r\n    \"roomId\": \"689484b692f80ca40238cba1\"\r\n}\r\n\r\n\r\n// \"email\": \"Amkanq@yopmail.com\",\r\n//     \"password\":\"Aman@123\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/teachers/schedule",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"teachers",
+								"schedule"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "schedule",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OTMyMTBhYTc1MGJhM2YwZGQwYWU3YyIsImVtYWlsIjoiQW1rYW5xQHlvcG1haWwuY29tIiwiaWF0IjoxNzU0NjQ4OTY1LCJleHAiOjE3NTcyNDA5NjV9._hFEBVIFuW7T-Jdqn2xO2W7jk2VQra7C0Tu0Mvu5HOw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n// \"email\": \"Amkanq@yopmail.com\",\r\n//     \"password\":\"Aman@123\"",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{kiddo}}/teachers/schedule",
+							"host": [
+								"{{kiddo}}"
+							],
+							"path": [
+								"teachers",
+								"schedule"
 							]
 						}
 					},
