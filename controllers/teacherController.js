@@ -345,13 +345,15 @@ export const scheduleHandle = async (req, res) => {
 
 export const myScheduleHandle = async (req, res) => {
   try {
-    const { id } = req.body;
+    const  {id}  = req.params;
+    console.log("id ---------->", id)
 
     const schema = Joi.object({
       id: Joi.string().required(),
     });
-    const { error } = schema.validate(req.body);
+    const { error } = schema.validate({id});
     if (error)
+      
       return res
         .status(400)
         .json(new ApiResponse(400, {}, error.details[0].message));
@@ -364,14 +366,13 @@ export const myScheduleHandle = async (req, res) => {
     if (!user)
       res.status(400).json(new ApiResponse(400, {}, `teacher not found`));
 
-    const data = await RoomSchedule.findOne({
+    const data = await RoomSchedule.find({
       roomId: id,
       teacherId: req.user.id,
     });
 
     if (!data)
       res.status(400).json(new ApiResponse(400, {}, `No schedule found`));
-
 
     if (user.schoolId.toString() !== room.schoolId.toString()) 
         res.status(400).json(new ApiResponse(400, {}, `Unauthorized access`));

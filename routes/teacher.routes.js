@@ -21,6 +21,6 @@ teacherRouter.get("/verify-password/:id", verifyPasswordHandle);
 teacherRouter.post("/change-password", changePasswordHandle);
 teacherRouter.get("/rooms", auth, teacherRoomsHandle);
 teacherRouter.post("/schedule", auth, scheduleHandle);
-teacherRouter.get("/schedule", auth, myScheduleHandle)
+teacherRouter.get("/schedule/room/:id", auth, myScheduleHandle)
 
 export default teacherRouter;
